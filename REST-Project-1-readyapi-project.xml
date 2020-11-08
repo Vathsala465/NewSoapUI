@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="f5e248db-2b9a-4c6e-9a5b-1b488084c08f" created="3.3.2" activeEnvironment="Default environment" name="REST Project 1" resourceRoot="" updated="3.3.2 2020-08-19T12:03:33Z" xmlns:con="http://eviware.com/soapui/config">
+  <con:settings/>
+  <con:interface xsi:type="con:RestService" id="b029cd21-035b-49d2-8a5d-b31db746560a" wadlVersion="http://wadl.dev.java.net/2009/02" name="https://reqres.in" type="rest" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <con:settings/>
+    <con:definitionCache type="TEXT" rootPart=""/>
+    <con:endpoints>
+      <con:endpoint>https://reqres.in</con:endpoint>
+    </con:endpoints>
+    <con:resource name="Users" path="/api/users" id="8b545b5a-886f-4fce-a3db-79b8c33a55a5">
+      <con:settings/>
+      <con:parameters/>
+      <con:method name="Users" id="56405d88-6673-48b8-ab70-747f1bd6e924" method="GET">
+        <con:settings/>
+        <con:parameters>
+          <con:parameter required="true">
+            <con:name>page</con:name>
+            <con:value>2</con:value>
+            <con:style>QUERY</con:style>
+            <con:default>2</con:default>
+            <con:path xsi:nil="true"/>
+            <con:description xsi:nil="true"/>
+          </con:parameter>
+        </con:parameters>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/json; charset=utf-8</con:mediaType>
+          <con:status>200</con:status>
+          <con:params/>
+          <con:element xmlns:user="https://reqres.in/api/users">user:Response</con:element>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType xsi:nil="true"/>
+          <con:status>0</con:status>
+          <con:params/>
+          <con:element>data</con:element>
+        </con:representation>
+        <con:request name="Request 1" id="8247d109-a076-4515-831a-b16d269ca149" mediaType="application/json">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+          </con:settings>
+          <con:endpoint>https://reqres.in</con:endpoint>
+          <con:request/>
+          <con:originalUri>https://reqres.in/api/users</con:originalUri>
+          <con:credentials>
+            <con:authType>No Authorization</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:parameters>
+            <con:entry key="page" value="2"/>
+          </con:parameters>
+          <con:parameterOrder>
+            <con:entry>page</con:entry>
+          </con:parameterOrder>
+        </con:request>
+      </con:method>
+      <con:method name="Method 2" id="2e58bcfc-f073-498f-9ed7-17b297e98e74" method="POST">
+        <con:settings/>
+        <con:parameters/>
+        <con:representation type="REQUEST">
+          <con:mediaType>application/json</con:mediaType>
+          <con:params/>
+        </con:representation>
+        <con:representation type="RESPONSE">
+          <con:mediaType>application/json; charset=utf-8</con:mediaType>
+          <con:status>201</con:status>
+          <con:params/>
+          <con:element xmlns:user="https://reqres.in/api/users">user:Response</con:element>
+        </con:representation>
+        <con:request name="Request 1" id="49869e41-ae04-4151-88b7-4ab113623e7e" mediaType="application/json" postQueryString="false">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+          </con:settings>
+          <con:endpoint>https://reqres.in</con:endpoint>
+          <con:request>{
+    "name": "morpheus",
+    "job": "leader"
+}</con:request>
+          <con:originalUri>https://reqres.in/api/users</con:originalUri>
+          <con:credentials>
+            <con:authType>No Authorization</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:parameters/>
+        </con:request>
+      </con:method>
+    </con:resource>
+  </con:interface>
+  <con:testSuite id="adc91d08-6b73-41dc-b1b1-482a6fe74ab5" name="TestSuite 1">
+    <con:settings/>
+    <con:savedRecentRuns>1</con:savedRecentRuns>
+    <con:runType>SEQUENTIAL</con:runType>
+    <con:testCase id="848c9edf-566a-43f8-aaba-db81ccea1c4d" discardOkResults="false" failOnError="true" failTestCaseOnErrors="true" keepSession="false" name="Search_ByID" searchProperties="true" timeout="0">
+      <con:settings/>
+      <con:savedRecentRuns>1</con:savedRecentRuns>
+      <con:testStep type="assertionteststep" name="Assertion" id="2877aeb5-0658-44c7-ba92-fbf97122132c">
+        <con:settings/>
+        <con:config xsi:type="con:AssertionTestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+      </con:testStep>
+      <con:testStep type="transfer" name="Property Transfer" id="2d43f8f8-4a87-4b10-9d22-f7af078e4c89">
+        <con:settings/>
+        <con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>id</con:name>
+            <con:sourceType>ResponseAsXml</con:sourceType>
+            <con:sourceStep>Getusersin2ndPage</con:sourceStep>
+            <con:sourcePath>declare namespace ns1='https://reqres.in/api/users';
+//ns1:Response[1]/ns1:data[1]/ns1:e[1]/ns1:id[1]</con:sourcePath>
+            <con:targetStep>Getusersin2ndPage</con:targetStep>
+            <con:targetPath/>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="properties" name="Properties" id="b42bf416-b6f8-441e-b46d-8a736a898bca">
+        <con:settings/>
+        <con:config xsi:type="con:PropertiesStep" saveFirst="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:properties>
+            <con:property>
+              <con:name>page</con:name>
+              <con:value>2</con:value>
+            </con:property>
+            <con:property>
+              <con:name>id</con:name>
+              <con:value>7</con:value>
+            </con:property>
+          </con:properties>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="Getusersin2ndPage" id="d2d61a93-a215-4750-8810-276fd06763d0">
+        <con:settings/>
+        <con:config service="https://reqres.in" resourcePath="/api/users" methodName="Users" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Getusersin2ndPage" id="8247d109-a076-4515-831a-b16d269ca149" mediaType="application/json">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>https://reqres.in</con:endpoint>
+            <con:request/>
+            <con:originalUri>https://reqres.in/api/users</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="699ad162-603d-4558-937b-960136cfd150" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="Response SLA Assertion" id="4f392676-f926-4ea3-9ff9-6676c390bac4" name="Response SLA">
+              <con:configuration>
+                <SLA>200</SLA>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="XPath Match" id="2fb077f2-5237-48c3-ad41-92017ab5bd46" name="XPath Match">
+              <con:configuration>
+                <path>declare namespace ns1='https://reqres.in/api/users';
+count(//ns1:Response[1]/ns1:data[1]/ns1:e)</path>
+                <content>6</content>
+                <allowWildcards>false</allowWildcards>
+                <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+                <ignoreComments>false</ignoreComments>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:parameters>
+              <con:entry key="page" value="${Properties#page}"/>
+            </con:parameters>
+            <con:parameterOrder>
+              <con:entry>page</con:entry>
+            </con:parameterOrder>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:properties/>
+      <con:reportParameters/>
+    </con:testCase>
+    <con:testCase id="d63f5506-1c1c-4123-832a-7e03d2ad2740" discardOkResults="false" failOnError="true" failTestCaseOnErrors="true" keepSession="false" name="CreateUser" searchProperties="true" timeout="0">
+      <con:settings/>
+      <con:savedRecentRuns>1</con:savedRecentRuns>
+      <con:testStep type="transfer" name="Property Transfer" id="e83a11b6-362a-4a00-b400-284799568131">
+        <con:settings/>
+        <con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>id</con:name>
+            <con:sourceType>ResponseAsXml</con:sourceType>
+            <con:sourceStep>Createusers</con:sourceStep>
+            <con:sourcePath>declare namespace ns1='https://reqres.in/api/users';
+//ns1:Response[1]/ns1:id[1]</con:sourcePath>
+            <con:targetStep>Createusers</con:targetStep>
+            <con:targetPath/>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>name</con:name>
+            <con:sourceType>ResponseAsXml</con:sourceType>
+            <con:sourceStep>Createusers</con:sourceStep>
+            <con:sourcePath>declare namespace ns1='https://reqres.in/api/users';
+//ns1:Response[1]/ns1:name[1]</con:sourcePath>
+            <con:targetStep>Createusers</con:targetStep>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>job</con:name>
+            <con:sourceType>ResponseAsXml</con:sourceType>
+            <con:sourceStep>Createusers</con:sourceStep>
+            <con:sourcePath>declare namespace ns1='https://reqres.in/api/users';
+//ns1:Response[1]/ns1:job[1]</con:sourcePath>
+            <con:targetStep>Createusers</con:targetStep>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="datasink" name="DataSink" id="c137f33c-5867-4c5b-9b03-daa91dcf2111">
+        <con:settings/>
+        <con:config xsi:type="con:DataSinkStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:dataSink type="Excel">
+            <con:configuration>
+              <file/>
+              <outfile>C:/Users/Disala_105426/Desktop/Vathsala API/Users.xlsx</outfile>
+              <worksheet>Sheet1</worksheet>
+              <cell>A1</cell>
+              <evaluateFormulas>true</evaluateFormulas>
+              <append>true</append>
+            </con:configuration>
+          </con:dataSink>
+          <con:properties/>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="datasourceloop" name="DataSource Loop" id="5489475b-e02b-411d-be60-b8b80e4e8cbe">
+        <con:settings/>
+        <con:config>
+          <dataSourceStep>DataSource</dataSourceStep>
+          <targetStep>Createusers</targetStep>
+          <discardResults>true</discardResults>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="Createusers" id="ce1cacec-f2dd-4d21-be87-9991c791e39d">
+        <con:settings/>
+        <con:config service="https://reqres.in" resourcePath="/api/users" methodName="Method 2" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="Createusers" id="49869e41-ae04-4151-88b7-4ab113623e7e" mediaType="application/json" postQueryString="false">
+            <con:settings>
+              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+            </con:settings>
+            <con:endpoint>https://reqres.in</con:endpoint>
+            <con:request>{
+    "name": "morpheus",
+    "job": "leader"
+}</con:request>
+            <con:originalUri>https://reqres.in/api/users</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="673048d5-f667-403c-a3a1-ee466c8db4de" name="Valid HTTP Status Codes">
+              <con:settings/>
+              <con:configuration>
+                <codes>200</codes>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="Response SLA Assertion" id="be9ad489-4bf6-4c40-a078-a9b4b078844f" name="Response SLA">
+              <con:configuration>
+                <SLA>200</SLA>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="Simple Contains" id="23b62913-f049-409f-9bed-1544763b06a3" name="Contains">
+              <con:configuration>
+                <token>${DataSource#name}</token>
+                <ignoreCase>false</ignoreCase>
+                <useRegEx>false</useRegEx>
+              </con:configuration>
+            </con:assertion>
+            <con:assertion type="Simple Contains" id="688ffbea-ae3f-4a6d-9a8e-4567a496f75c" name="Contains 2">
+              <con:configuration>
+                <token>${DataSource#job}</token>
+                <ignoreCase>false</ignoreCase>
+                <useRegEx>false</useRegEx>
+              </con:configuration>
+            </con:assertion>
+            <con:credentials>
+              <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+              <con:authType>No Authorization</con:authType>
+            </con:credentials>
+            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+            <con:parameters/>
+          </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="datasource" name="DataSource" id="de66be62-5ecc-4005-83d3-1cdd5f149036">
+        <con:settings/>
+        <con:config xsi:type="con:DataSourceStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:dataSource type="Excel">
+            <con:configuration>
+              <file>C:/Users/Disala_105426/Desktop/Vathsala API/Create Data.xlsx</file>
+              <worksheet/>
+              <cell>A2</cell>
+              <ignoreEmpty>false</ignoreEmpty>
+              <evaluateFormulas>false</evaluateFormulas>
+            </con:configuration>
+          </con:dataSource>
+          <con:shared>true</con:shared>
+          <con:restartShared>true</con:restartShared>
+          <con:property>name</con:property>
+          <con:property>job</con:property>
+          <con:completeLastOperation>true</con:completeLastOperation>
+          <con:restartOnRun>true</con:restartOnRun>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="assertionteststep" name="Assertion" id="42335a47-6e83-45f5-a458-11c579372a9b">
+        <con:settings/>
+        <con:config xsi:type="con:AssertionTestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+      </con:testStep>
+      <con:properties/>
+      <con:reportParameters/>
+      <con:breakPoints>
+        <con:testStepId>ce1cacec-f2dd-4d21-be87-9991c791e39d</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+    </con:testCase>
+    <con:properties/>
+    <con:reportParameters/>
+  </con:testSuite>
+  <con:properties/>
+  <con:wssContainer/>
+  <con:databaseConnectionContainer/>
+  <con:jmsConnectionContainer/>
+  <con:oAuth2ProfileContainer/>
+  <con:oAuth1ProfileContainer/>
+  <con:reporting>
+    <con:xmlTemplates/>
+    <con:parameters/>
+  </con:reporting>
+  <con:eventHandlers type="RequestFilter.filterRequest" name="RequestFilter.filterRequest">
+    <con:script>// Sample event script to add custom HTTP header to all outgoing REST, SOAP and HTTP(S) calls
+// This code is often used for adding custom authentication to SoapUI Pro tests
+
+// If hardcoding the token, uncomment and change line 5
+// token = '4567'
+
+// If your token is parameterized in Project level custom property, uncomment line 8
+// token = request.parent.testCase.testSuite.project.getProperty('auth_token').getValue()
+
+// To modify all outgoing calls, remove comments from lines 11 to 16
+// headers = request.requestHeaders
+// if (headers.containsKey('auth_token2') == false) {
+//   headers.put('auth_token2', token)
+//   request.requestHeaders = headers
+// }</con:script>
+  </con:eventHandlers>
+  <con:eventHandlers type="TestRunListener.afterStep" name="TestRunListener.afterStep">
+    <con:script>// Save all test step results into files
+// Change the directory path in line 5 to a location where you want to store details
+// then uncomment lines 5 to 10
+
+// filePath = 'C:\\tempOutputDirectory\\'
+// fos = new java.io.FileOutputStream(filePath + testStepResult.testStep.label + '.txt', true)
+// pw = new java.io.PrintWriter(fos)
+// testStepResult.writeTo(pw)
+// pw.close()
+// fos.close()</con:script>
+  </con:eventHandlers>
+  <con:authRepository/>
+  <con:tags/>
+</con:soapui-project>
